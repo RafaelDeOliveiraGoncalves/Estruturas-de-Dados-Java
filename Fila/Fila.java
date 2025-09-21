@@ -64,14 +64,17 @@ public class Fila <T>{
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Start -> ");
-        for(int i=0;i<this.vetor.length;i++){
-            sb.append(this.vetor[i]);
-            if(i<this.vetor.length-1){
-                sb.append(" ");
+        int i = this.f;
+        while(true){
+            sb.append(this.vetor[i] + " ");
+            if(i == this.r){
+                break;
             }
+            i = (i+1)%this.cap;
         }
-        sb.append(" <- End");
+        sb.append("<- End");
         return sb.toString();
     }
 
+    
 }
