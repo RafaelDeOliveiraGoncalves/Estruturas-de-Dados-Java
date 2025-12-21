@@ -1,5 +1,5 @@
-public class Pilha {
-    private Object[] vetor;
+public class Pilha<T> {
+    private T[] vetor;
     private int cap, topo;
 
     //Construtor
@@ -7,51 +7,43 @@ public class Pilha {
         this.inicializa(cap);
     }
 
-    //Encapsulamento
-    public Object[] getVetor(){
-        return vetor;
+    public Pilha(int cap, T[] vetor){
+        this.cap = cap;
+        this.vetor = vetor;
+        this.topo = vetor.length;
     }
 
-    public void setVetor(Object[] vetor){
-        this.vetor = vetor;
-    }
+    //Encapsulamento
 
     public int getCap(){
         return this.cap;
-    }
-
-    public void setCap(int capacidade){
-        this.cap = capacidade;
     }
 
     public int getTam() {
         return topo;
     }
 
-    public void setTam(int tam) {
-        this.topo = tam;
-    }
-
-
-    public void inicializa(int cap){
+    @SuppressWarnings("unchecked")
+    private void inicializa(int cap){
         this.cap = cap;
         this.topo = 0;
-        this.vetor = new Object[cap];
+        this.vetor = (T[]) new Object[cap];
     }
 
     public void esvazia(){
+        java.util.Arrays.fill(vetor,0,topo,null);
         this.topo = 0;
     }
 
-    private boolean vazia(){
+    public boolean vazia(){
         return this.topo == 0;
     }
 
-    private boolean cheia(){
+    public boolean cheia(){
         return this.cap == this.topo;
     }
 
-    public void push(int k) throws PilhaCheiaException{
+    public void push(T k) throws PilhaCheiaException{
         if(this.cheia()){
             throw new PilhaCheiaException();
         }
@@ -59,15 +51,17 @@ public class Pilha {
         this.topo++;
     }
 
-    public Object pop() throws PilhaVaziaException{
+    public T pop() throws PilhaVaziaException{
         if(this.vazia()){
             throw new PilhaVaziaException();
         }
         this.topo--;
-        return this.vetor[this.topo];
+        T k = this.vetor[this.topo];
+        this.vetor[this.topo] = null;
+        return k;
     }
 
-    public Object topo() throws PilhaVaziaException{
+    public T topo() throws PilhaVaziaException{
         if(this.vazia()){
             throw new PilhaVaziaException();
         }
@@ -76,6 +70,8 @@ public class Pilha {
      
     @Override
     public String toString(){
+        if(this.vazia()) return "Pilha Vazia";
+
         StringBuilder sb = new StringBuilder();
         sb.append("Topo\n");
         for(int i=this.topo-1;i>=0;i--){

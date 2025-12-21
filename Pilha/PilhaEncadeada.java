@@ -1,9 +1,11 @@
 public class PilhaEncadeada<T extends Comparable<T>>{
     private ListaEncadeada<T> lista;
+    private int tamanho;
 
     //Construtor
     public PilhaEncadeada(){
         this.lista = new ListaEncadeada<>();
+        this.tamanho = 0;
     }
 
     public PilhaEncadeada(T k){
@@ -13,6 +15,7 @@ public class PilhaEncadeada<T extends Comparable<T>>{
 
     public void esvazia(){
         this.lista.setCabeca(null);
+        this.tamanho = 0;
     }
 
     public boolean vazia(){
@@ -21,6 +24,7 @@ public class PilhaEncadeada<T extends Comparable<T>>{
 
     public void push(T k){
         this.lista.insere(k);
+        this.tamanho++;
     }
 
     public T pop() throws PilhaVaziaException{
@@ -29,6 +33,7 @@ public class PilhaEncadeada<T extends Comparable<T>>{
         }
         T k = this.lista.getCabeca().getChave();
         this.lista.setCabeca(this.lista.getCabeca().getProximo());
+        this.tamanho--;
         return k;
     }
 
@@ -40,13 +45,7 @@ public class PilhaEncadeada<T extends Comparable<T>>{
     }
 
     public int len(){
-        int cont = 0;
-        No<T> p = this.lista.getCabeca();
-        while(p!=null){
-            cont++;
-            p = p.getProximo();
-        }
-        return cont;
+        return this.tamanho;
     }
 
     @Override

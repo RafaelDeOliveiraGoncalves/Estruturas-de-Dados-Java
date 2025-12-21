@@ -27,7 +27,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
         this.cabeca = null;
     }
     public ListaEncadeada(T k){
-        No<T> p = new No(k);
+        No<T> p = new No<>(k);
         this.setCabeca(p);
     }
 
@@ -62,7 +62,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
 
     public No<T> busca(T k){
         No<T> p = this.cabeca;
-        while(p!=null && p.getChave()!=k){
+        while(p != null && !p.getChave().equals(k)){
             p = p.getProximo();
         }
         return p;
@@ -90,14 +90,14 @@ public class ListaEncadeada<T extends Comparable<T>> {
     }
 
     public void insere(T k){
-        No<T> p = new No(k);
+        No<T> p = new No<>(k);
         p.setProximo(this.cabeca);
         this.cabeca = p;
     }
 
     public void insereOrdenado(T k){
         TuplaNos tupla = buscaInsercao(k);
-        No<T> p = new No(k);
+        No<T> p = new No<>(k);
         if(tupla.getAnterior()==null){
             p.setProximo(this.cabeca);
             this.cabeca = p;
@@ -110,7 +110,7 @@ public class ListaEncadeada<T extends Comparable<T>> {
 
     public void deletar(T k){
         TuplaNos tupla = buscaInsercao(k);
-        if(tupla.getAtual()==null){
+        if(tupla.getAtual() == null || !tupla.getAtual().getChave().equals(k)){
             return;
         }
         if(tupla.getAnterior()==null){

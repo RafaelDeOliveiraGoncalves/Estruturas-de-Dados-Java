@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class FilaDinamica<T> {
+public class FilaDinamica <T>{
     private ArrayList<T> array;
 
     public FilaDinamica(){
@@ -39,6 +39,8 @@ public class FilaDinamica<T> {
 
     @Override
     public String toString(){
+        if(this.vazia()) return "Fila Vazia";
+
         StringBuilder sb = new StringBuilder();
         sb.append("Start -> ");
         for(int i=0;i<this.array.size();i++){

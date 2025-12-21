@@ -1,5 +1,5 @@
 
-public class FilaEncadeada<T extends Comparable<T>> {
+public class FilaEncadeada <T extends Comparable<T>>{
     private ListaEncadeada<T> lista;
     private No<T> r;
 
@@ -18,7 +18,7 @@ public class FilaEncadeada<T extends Comparable<T>> {
     }
 
     public void enfila(T k){
-        No<T> p = new No(k);
+        No<T> p = new No<>(k);
         if(this.vazia()){
             this.lista.setCabeca(p);
             this.r = p;

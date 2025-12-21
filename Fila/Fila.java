@@ -1,4 +1,4 @@
-public class Fila <T>{
+public class Fila<T>{
     private T[] vetor;
     private int f,r,cap;
 
@@ -6,10 +6,12 @@ public class Fila <T>{
         this.inicializa(cap);
     }
 
+    @SuppressWarnings("unchecked")
     private void inicializa(int cap){
         this.f = -1;
         this.r = -1;
         this.vetor = (T[]) new Object[cap];
+        this.cap = cap;
     }
 
     public void esvazia(){
@@ -51,6 +53,7 @@ public class Fila <T>{
             throw new FilaVaziaException();
         }
         T k = this.vetor[this.f];
+        this.vetor[this.f] = null;
         if(this.f==this.r){
             this.esvazia();
         }
@@ -62,6 +65,8 @@ public class Fila <T>{
 
     @Override
     public String toString(){
+        if(this.vazia()) return "Fila Vazia";
+
         StringBuilder sb = new StringBuilder();
         sb.append("Start -> ");
         int i = this.f;
@@ -76,5 +81,4 @@ public class Fila <T>{
         return sb.toString();
     }
 
-    
 }
