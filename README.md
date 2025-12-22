@@ -4,7 +4,7 @@ Este repositório contém uma coleção de implementações de estruturas de dad
 
 ## Estruturas Implementadas
 
-1.  Pilhas - LIFO (Last-In, First-Out)
+1.  Pilhas (Stacks) - LIFO (Last-In, First-Out)
 
     - Pilha Estática: Utiliza arrays fixos para máxima performance e contiguidade de memória.
 
