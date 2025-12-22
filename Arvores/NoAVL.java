@@ -10,7 +10,7 @@ public class NoAVL<T extends Comparable<T>> extends NoArvore<T> {
         return this.altura;
     }
 
-    protected void setAltura(int altura){
+    public void setAltura(int altura){
         this.altura = altura;
     }
 

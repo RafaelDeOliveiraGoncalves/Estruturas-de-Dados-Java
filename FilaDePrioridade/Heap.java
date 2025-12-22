@@ -1,13 +1,12 @@
-package FilaDePrioridade;
-
 import java.util.Arrays;
 
 public class Heap<T extends Comparable<T>> {
     private T[] vetor;
     private int tamanho;
 
+    @SuppressWarnings("unchecked")
     public Heap(int capacidade){
-        this.vetor = (T[]) new Comparable[capacidade];
+        this.vetor = (T[]) new Object[capacidade];
         this.tamanho = 0;
     }
 
@@ -26,14 +25,15 @@ public class Heap<T extends Comparable<T>> {
         }
         T max = this.vetor[0];
         this.vetor[0] = this.vetor[this.tamanho-1];
+        this.vetor[this.tamanho-1] = null;
         this.tamanho--;
         desceHeap(0);
         return max;
     }
 
-    public void heapSort(){
+    public void heapSort(){ 
         int n = this.tamanho;
-        for(int i = n/2 - 1;i>=0; i--){
+        for(int i = n-1; i>0 ; i--){
             T temp = vetor[0];
             this.vetor[0] = this.vetor[i];
             this.vetor[i] = temp;

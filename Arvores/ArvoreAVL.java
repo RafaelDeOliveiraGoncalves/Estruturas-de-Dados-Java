@@ -32,7 +32,7 @@ public class ArvoreAVL<T extends Comparable<T>> extends ArvoreBinariaBusca<T> {
     }
 
     private NoAVL<T> rotacaoEsquerda(NoAVL<T> r){
-        NoAVL y,f;
+        NoAVL<T> y,f;
         y = r.getLd();
         f = y.getLe();
 
@@ -147,7 +147,9 @@ public class ArvoreAVL<T extends Comparable<T>> extends ArvoreBinariaBusca<T> {
     }
 
     public void nivel() throws FilaVaziaException{
-        FilaDinamica fila = new FilaDinamica();
+        if (raiz == null) return;
+        
+        FilaDinamica<NoAVL<T>> fila = new FilaDinamica<>();
         fila.enfila(raiz);
         try{
             while(!fila.vazia()){

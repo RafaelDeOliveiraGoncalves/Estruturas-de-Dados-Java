@@ -108,6 +108,8 @@ public class ArvoreBinariaBusca<T extends Comparable<T>>{
     }
 
     public int altura(NoArvore<T> no){
+        if (no == null) return -1;
+        
         int alturaEsq = 0;
         int alturaDir = 0;
         if(no.getLe()!=null){
