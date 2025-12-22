@@ -36,7 +36,9 @@ Este repositório contém uma coleção de implementações de estruturas de dad
 
 ## Análise de Complexidade
 
-![alt text](image.png)
+![alt text](image-1.png)
+
+\*Pode degenerar para O(n) se não estiver balanceada.
 
 ## Autor
 
