@@ -1,7 +1,8 @@
-import java.util.ArrayList;
+import java.util.ArrayDeque; 
+import java.util.Iterator; // Necessário para iterar de forma reversa no array
 
 public class PilhaDinamica<T> {
-    private ArrayList<T> array;
+    private ArrayDeque<T> array;
 
     public PilhaDinamica(){
         this.inicializa();
@@ -12,7 +13,7 @@ public class PilhaDinamica<T> {
     }
 
     private void inicializa(){
-        this.array = new ArrayList<>();
+        this.array = new ArrayDeque<>();
     }
 
     public void esvazia(){
@@ -24,14 +25,14 @@ public class PilhaDinamica<T> {
     }
 
     public void push(T k){
-        this.array.add(k);
+        this.array.addLast(k);
     }
 
     public T pop() throws PilhaVaziaException{
         if(this.vazia()){
             throw new PilhaVaziaException();
         }
-        T k = this.array.remove(this.array.size()-1);
+        T k = this.array.removeLast();
         return k;
     }
 
@@ -39,7 +40,7 @@ public class PilhaDinamica<T> {
         if(this.vazia()){
             throw new PilhaVaziaException();
         }
-        T k = this.array.get(this.array.size()-1);
+        T k = this.array.peekLast();
         return k;
     }
 
@@ -47,10 +48,11 @@ public class PilhaDinamica<T> {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Topo\n");
-        for(int i=this.array.size()-1;i>=0;i--){
-            sb.append(this.array.get(i));
-            if(i>0){
-                sb.append('\n');
+        Iterator<T> elem = this.array.descendingIterator();
+        while(elem.hasNext()){
+            sb.append(elem.next());
+            if(elem.hasNext()){
+                sb.append("\n");
             }
         }
         return sb.toString();

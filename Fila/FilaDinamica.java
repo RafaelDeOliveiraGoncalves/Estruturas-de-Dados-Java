@@ -1,14 +1,14 @@
-import java.util.ArrayList;
+import java.util.ArrayDeque; // Melhor que ArrayList pois não precisa realocar todos os elementos ao desenfilar da FilaDinamica
 
 public class FilaDinamica <T>{
-    private ArrayList<T> array;
+    private ArrayDeque<T> array;
 
     public FilaDinamica(){
         this.inicializa();
     }
 
     public void inicializa(){
-        this.array = new ArrayList<>();
+        this.array = new ArrayDeque<>();
     }
     
     public void esvazia(){
@@ -20,21 +20,21 @@ public class FilaDinamica <T>{
     }
 
     public void enfila(T k){
-        this.array.add(k); //Adiciona sempre no final do array
+        this.array.addLast(k); //Adiciona no final do array
     }
 
     public T desenfila() throws FilaVaziaException{
         if(this.vazia()){
             throw new FilaVaziaException();
         }
-        return this.array.remove(0); // Remove sempre no começo do array
+        return this.array.removeFirst(); // Remove no começo do array em tempo O(1)
     }
 
     public T frente() throws FilaVaziaException{
         if(this.vazia()){
             throw new FilaVaziaException();
         }
-        return this.array.get(0); //Retorna a primeira posição do array
+        return this.array.peekFirst(); //Retorna a primeira posição do array 
     }
 
     @Override
@@ -43,11 +43,13 @@ public class FilaDinamica <T>{
 
         StringBuilder sb = new StringBuilder();
         sb.append("Start -> ");
-        for(int i=0;i<this.array.size();i++){
-            sb.append(this.array.get(i));
-            if(i<this.array.size()-1){
+        int cont = 0;
+        for(T elemento : this.array){
+            sb.append(elemento);
+            if(cont<this.array.size()-1){
                 sb.append(" ");
             }
+            cont++;
         }
         sb.append(" <- End");
         return sb.toString();
