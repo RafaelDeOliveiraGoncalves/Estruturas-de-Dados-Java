@@ -7,12 +7,6 @@ public class Pilha<T> {
         this.inicializa(cap);
     }
 
-    public Pilha(int cap, T[] vetor){
-        this.cap = cap;
-        this.vetor = vetor;
-        this.topo = vetor.length;
-    }
-
     //Encapsulamento
 
     public int getCap(){

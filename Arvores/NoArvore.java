@@ -7,11 +7,6 @@ public class NoArvore<T extends Comparable<T>> {
         this.le = null;
         this.ld = null;
     }
-    public NoArvore(T chave, NoArvore<T> le, NoArvore<T> ld){
-        this.chave = chave;
-        this.le = le;
-        this.ld = ld;
-    }
 
     public T getChave(){
         return this.chave;
