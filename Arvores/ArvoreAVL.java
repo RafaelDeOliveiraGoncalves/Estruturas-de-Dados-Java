@@ -1,11 +1,11 @@
-public class ArvoreAVL<T extends Comparable<T>> extends ArvoreBinariaBusca<T> {
+public class ArvoreAVL<T extends Comparable<T>> {
     private NoAVL<T> raiz;
 
     public ArvoreAVL(){
-        super();
+        this.raiz = null;
     }
     public ArvoreAVL(NoAVL<T> raiz){
-        super(raiz);
+        this.raiz = raiz;
     }
 
     public NoAVL<T> getRaiz(){
@@ -144,6 +144,47 @@ public class ArvoreAVL<T extends Comparable<T>> extends ArvoreBinariaBusca<T> {
 
     public void delete(T chave){
         this.raiz = delete(this.raiz,chave);
+    }
+
+    public NoAVL<T> busca(T chave){
+        NoAVL<T> p = this.raiz;
+        while(p!=null && p.getChave().compareTo(chave)!=0){
+            if(chave.compareTo(p.getChave())<0){
+                p = p.getLe();
+            }
+            else{
+                p = p.getLd();
+            }
+        }
+        return p;
+    }
+
+    public int alturaArvore(){
+        return this.raiz.getAltura();
+    }
+
+    public void preOrdem(NoAVL<T> no){
+        if(no!=null){
+            System.out.println(no.getChave());
+            this.preOrdem(no.getLe());
+            this.preOrdem(no.getLd());
+        }
+    }
+
+    public void inOrdem(NoAVL<T> no){
+        if(no!=null){
+            this.inOrdem(no.getLe());
+            System.out.println(no.getChave());
+            this.inOrdem(no.getLd());
+        }
+    }
+
+    public void posOrdem(NoAVL<T> no){
+        if(no!=null){
+            this.posOrdem(no.getLe());
+            this.posOrdem(no.getLd());
+            System.out.println(no.getChave());
+        }
     }
 
     public void nivel() throws FilaVaziaException{

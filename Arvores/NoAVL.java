@@ -1,11 +1,24 @@
-public class NoAVL<T extends Comparable<T>> extends NoArvore<T> {
+public class NoAVL<T extends Comparable<T>> {
+    private T chave;
+    private NoAVL<T> le;
+    private NoAVL<T> ld;
     private int altura;
 
     public NoAVL(T chave){
-        super(chave);
+        this.chave = chave;
+        this.le = null;
+        this.ld = null;
         this.altura = 0;
     }
     
+    public T getChave(){
+        return this.chave;
+    }
+
+    public void setChave(T chave){
+        this.chave = chave;
+    }
+
     public int getAltura(){
         return this.altura;
     }
@@ -14,12 +27,20 @@ public class NoAVL<T extends Comparable<T>> extends NoArvore<T> {
         this.altura = altura;
     }
 
-    public NoAVL<T> getLd(){
-        return (NoAVL<T>) super.getLd();
+    public NoAVL<T> getLe(){
+        return this.le;
     }
 
-    public NoAVL<T> getLe(){
-        return (NoAVL<T>) super.getLe();
+    public void setLe(NoAVL<T> le){
+        this.le = le;
+    }
+
+    public NoAVL<T> getLd(){
+        return this.ld;
+    }
+
+    public void setLd(NoAVL<T> ld){
+        this.ld = ld;
     }
 
 }
